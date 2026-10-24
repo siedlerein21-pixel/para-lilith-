@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para mi Lilith Selene - Eternamente Tuya</title>
+    <link href="https://googleapis.com" rel="stylesheet">
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #110000 0%, #1a0000 35%, #4a0000 35%, #4a0000 60%, #2b0000 60%, #2b0000 75%, #0d0d0d 75%, #050505 100%);
+            background-size: 100% 30px;
+            font-family: 'Press Start 2P', monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .contenedor-gotico {
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 120px;
+            z-index: 10;
+        }
+
+        .sobre-oscuro {
+            position: relative;
+            width: 380px;
+            height: 240px;
+            background-color: #2a2a2a;
+            border: 6px solid #1a1a1a;
+            box-shadow: inset -6px -6px 0px #0f0f0f, inset 6px 6px 0px #444444;
+            transition: transform 0.4s ease;
+        }
+
+        .solapa-oscura {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 184px solid transparent;
+            border-right: 184px solid transparent;
+            border-top: 110px solid #222222; 
+            z-index: 4;
+            transform-origin: top;
+            transition: transform 0.4s ease 0.1s;
+        }
+
+        .frente-oscuro {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 184px solid #333333; 
+            border-right: 184px solid #333333;
+            border-bottom: 120px solid #111111;
+            border-top: 104px solid transparent;
+            z-index: 3;
+        }
+
+        .frente-oscuro::after {
+            content: "🩸";
+            position: absolute;
+            bottom: 40px;
+            left: -15px;
+            width: 30px;
+            height: 30px;
+            font-size: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 6;
+            animation: latido 1.5s infinite ease-in-out;
+        }
+
+        @keyframes latido {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .pergamino-sangriento {
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            width: 338px;
+            height: 200px;
+            background-color: #d1b894;
+            border: 5px solid #4a0000;
+            background-image: radial-gradient(circle at 10% 20%, rgba(139, 0, 0, 0.6) 0%, transparent 20%), radial-gradient(circle at 85% 75%, rgba(139, 0, 0, 0.5) 0%, transparent 25%), radial-gradient(circle at 50% 50%, rgba(74, 0, 0, 0.15) 0%, transparent 50%);
+            box-shadow: inset -4px -4px 0px #8b0000, inset 4px 4px 0px #e6cfad;
+            padding: 25px 15px;
+            box-sizing: border-box;
+            z-index: 2;
+            overflow-y: scroll;
+            transition: transform 0.5s ease 0.3s, height 0.5s ease 0.3s;
+            image-rendering: pixelated;
+        }
+
+        .pergamino-sangriento::-webkit-scrollbar {
+            width: 10px;
+        }
+        .pergamino-sangriento::-webkit-scrollbar-thumb {
+            background: #4a0000;
+            border: 2px solid #1a1a1a;
+        }
+
+        .pergamino-sangriento h2 {
+            font-family: 'Creepster', cursive;
+            font-size: 24px;
+            color: #8b0000;
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 0px #000000; 
+        }
+
+        .contenido-gótico p {
+            font-family: 'Cinzel', serif;
+            font-size: 10px;
+            font-weight: bold;
+            color: #1a0a0a;
+            line-height: 1.8;
+            margin-bottom: 12px;
+            text-transform: none;
+        }
+
+        .pergamino-sangriento .final {
+            font-family: 'Press Start 2P', monospace;
+            color: #ff0000; 
+            font-weight: bold;
+            font-size: 8px;
+            text-align: center;
+            margin-top: 25px;
+            line-height: 1.6;
+            text-shadow: 1px 1px 0px #000;
+        }
+
+        .instruccion-gotica {
+            margin-top: 25px;
+            color: #8b0000; 
+            font-size: 10px;
+            text-shadow: 1px 1px 0px #000;
+            animation: parpadeo 1.2s infinite alternate;
+        }
+
+        @keyframes parpadeo {
+            0% { opacity: 0.3; color: #4a0000; }
+            100% { opacity: 1; color: #ff0000; }
+        }
+
+        .contenedor-gotico.abierto .solapa-oscura {
+            transform: rotateX(180deg);
+            z-index: 1;
+        }
+
+        .contenedor-gotico.abierto .pergamino-sangriento {
+            transform: translateY(-160px);
+            height: 340px; 
+            z-index: 5;
+            box-shadow: 0px 15px 30px rgba(0,0,0,0.8);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contenedor-gotico" onclick="abrirCarta()">
+        <div class="sobre-oscuro">
+            <div class="solapa-oscura"></div>
+            <div class="frente-oscuro"></div>
+            
+            <div class="pergamino-sangriento">
+                <h2>LILITH SELENE 🖤</h2>
+                <div class="contenido-gótico">
+                    <p>Quería escribirte esto porque a veces es imposible guardarme todo lo que me provocas. Le das un color completamente diferente a mis días, pero sobre todo, me vuelves loco.</p>
+                    <p>Me encanta tu risa, la forma en que ves el mundo y lo desconectado que me siento de todo cuando estoy contigo. Eres una mujer increíblemente hermosa, inteligente y tienes un magnetismo que me desarma por completo. No te imaginas las ganas que me dan de abrazarte, de tenerte cerca y de perderme en ti cada vez que te veo.</p>
+                    <p>Compartir mi tiempo y mi vida contigo es el mejor regalo que puedo pedir, y tenerte cerca nunca es suficiente.</p>
+                    <p>Gracias por ser mi apoyo y por compartir tu saliva, y de probar mi sangre, fue una accion muy hermosa y sincera.</p>
+                    <p class="final">te amo muchiisisisisisisisimo mi lilith selene 🩸</p>
+                </div>
+            </div>
+        </div>
+        <p class="instruccion-gotica">> ABRE EL PACTO <</p>
+    </div>
+
+    <script>
+        function abrirCarta() {
+            const contenedor = document.querySelector('.contenedor-gotico');
+            contenedor.classList.toggle('abierto');
+        }
+    </script>
+</body>
+</html>
